@@ -78,7 +78,7 @@
                                             <td>{{ $user->is_admin }}</td>
                                             <td>
                                                 <a href="{{ route('usersedit', $user->id) }}">
-                                                    <button class="btn btn-outline-primary" value="Edit"
+                                                    <button class="btn btn-outline-success" value="Edit"
                                                         name="editpro"> Edit
                                                     </button></a>
                                             </td>
@@ -87,7 +87,7 @@
                                                 <form method="post"action="{{ route('usersdelete', $user->id) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="submit" class="btn btn-outline-danger" value="{{$user->id}}">
+                                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
                                                 </form>
                                             </td>
                                         </tr>

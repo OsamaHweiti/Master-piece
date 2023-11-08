@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -12,7 +13,7 @@ class UsersController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {    if (Auth::check())
+    {    
         $users = users::all();
         $sum = count($users);
         return view('/admin/adminusers', compact('users', 'sum'));
@@ -31,8 +32,14 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $result = users::create($request->all());
-        if ($result) {
+          $user = Users::create([
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'is_admin' => $request->input('is_admin'),
+            'password' => Hash::make($request->input('password')),
+        ]);
+        if ($user) {
             return redirect('/admin/users');
         } else {
             return response('failed');
@@ -66,11 +73,12 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         try {
+           
             $obj = users::where('id', $id)->first();
             $obj->username = $request->username;
             $obj->email = $request->email;
             $obj->phone = $request->phone;
-            $obj->password = $request->password;
+            $obj->password = Hash::make($request->input('password'));
             $obj->is_admin = $request->is_admin;
             $obj->update();
             // dd($obj);
@@ -95,5 +103,19 @@ class UsersController extends Controller
         if ($delete)
         return redirect()->back()->with('success', 'User is Deleted successfully.');
         
+    }
+    public function login(Request $request){
+        $user = $request->validate([
+            'password' => 'required',
+            'email' => 'required|string|email',
+        ]);
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            $user = auth()->user(); 
+            return redirect('/');
+        }
+
     }
 }
