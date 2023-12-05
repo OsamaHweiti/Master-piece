@@ -18,7 +18,43 @@
         </h2>
       </div>
       <div class="price_container ">
+        @foreach ($prices as $price )
         <div class="box">
+          <div class="detail-box">
+            <h2>$ <span>{{$price->price}}</span></h2>
+            <h6>
+            {{$price->name}}
+            </h6>
+            <ul class="price_features">
+              <li>
+                {{$price->ram}}
+              </li>
+              <li>
+             {{$price->storage}}
+              </li>
+              <li>
+                Weekly Backups
+              </li>
+              <li>
+                DDoS Protection
+              </li>
+              <li>
+                Full Root Access
+              </li>
+              <li>
+                24/7/365 Tech Support
+              </li>
+            </ul>
+          </div>
+          <div class="btn-box">
+            <a href="{{route('pricecheckout', $price->id)}}">
+              CheckOut
+            </a>
+          </div>
+        </div>
+        @endforeach
+
+        {{-- <div class="box">
           <div class="detail-box">
             <h2>$ <span>49</span></h2>
             <h6>
@@ -116,7 +152,8 @@
               See Detail
             </a>
           </div>
-        </div>
+        </div> --}}
+        
       </div>
     </div>
   </section>

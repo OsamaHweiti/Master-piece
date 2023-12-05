@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Stripe\Stripe;
 use App\Models\users;
+use Stripe\PaymentIntent;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -104,7 +107,7 @@ class UsersController extends Controller
         return redirect()->back()->with('success', 'User is Deleted successfully.');
         
     }
-    public function login(Request $request){
+    public function Login(Request $request){
         $user = $request->validate([
             'password' => 'required',
             'email' => 'required|string|email',
@@ -114,8 +117,54 @@ class UsersController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = auth()->user(); 
+            if ($user->is_admin) {
+                return redirect('/admin');
+            }
+    
             return redirect('/');
+        }
+        else{
+            return redirect('/login')->withErrors(['login' => 'Invalid email or password']);
         }
 
     }
+
+    //
+    public function register(Request $request)
+    {
+        
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:32|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+            'phone'=>'required'
+         
+        ]);
+        $user = new Users;
+    $user->username = $validatedData['username'];
+    $user->email = $validatedData['email'];
+    $user->password = Hash::make($validatedData['password']); 
+    $user->phone  = $validatedData['phone'];
+
+    
+    $user->save();
+
+   
+    return redirect('/login')->with('success', 'User registered successfully.');
+
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/')->with('success', 'Successfully logged out');
+    }
+    public function profile()
+    {
+        $userid = Auth::user()->id ;
+        $subscription = Subscription::findorfail($userid);
+
+        return view('/homepage/pages/profilepage', compact('subscription'));
+       
+    }
+   
 }

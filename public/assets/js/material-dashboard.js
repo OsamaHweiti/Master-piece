@@ -125,6 +125,7 @@ if (document.querySelector('.fixed-plugin')) {
 
 //Set Sidebar Color
 function sidebarColor(a) {
+  console.log('sidebarColor function called');
   var parent = document.querySelector(".nav-link.active");
   var color = a.getAttribute("data-color");
 
@@ -149,8 +150,11 @@ function sidebarColor(a) {
   parent.classList.add('bg-gradient-' + color);
 }
 
+
+
 // Set Sidebar Type
 function sidebarType(a) {
+  console.log('sidebarType function called');
   var parent = a.parentElement.children;
   var color = a.getAttribute("data-class");
   var body = document.querySelector("body");

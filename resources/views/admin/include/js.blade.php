@@ -19,6 +19,24 @@
     document.getElementById('canclebuttonuser').style.display = 'none';
    }
 
+
+  // Function to change the anchor class
+
+    document.addEventListener('DOMContentLoaded', function () {
+     
+        var path = window.location.pathname;
+
+      
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function (link) {
+            if (link.getAttribute('href') === path) {
+                link.classList.add('bg-gradient-primary');
+            }
+        });
+    });
+
+
+
    
 
 </script>

@@ -15,4 +15,9 @@ class services extends Model
         'description',
         'photo',
     ];
+
+    public function prices()
+    {
+        return $this->hasMany(prices::class);
+    }
 }

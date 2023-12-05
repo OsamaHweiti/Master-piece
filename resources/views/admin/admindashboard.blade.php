@@ -9,103 +9,69 @@
 
 <div class="section__content section__content--p30">
     <div class="container-fluid">
-        <div class="container border-radius">
-            <div id="editdiv" style="background-color: white; text-align: center; padding:1%; display:none">
-                <form method="post" action="">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" id="id-input" name="id">
-                    <label class="col-2">First Name:</label>
-                    <input class="col-5" id="fname-input" type="text"  name="fname"><br>
-                    <label class="col-2">Last Name:</label>
-                    <input class="col-5" id="lname-input" type="text" name="lname"><br>
-                    <label class="col-2">BirthDate:</label>
-                    <input class="col-5" id="bdate-input" type="date" name="bdate" required><br>
-                    <label class="col-2">Gender:</label>
-                    <select class="col-5" name="gender">
-                        <option name="gender" id="gender-male" value="male">Male</option>
-                        <option name="gender" id="gender-female" value="female">FeMale</option>
-                    </select><br>
-                    <label class="col-2">Email:</label>
-                    <input class="col-5" id="email-input" type="text"  name="email"><br>
-                    <label class="col-2">Password:</label>
-                    <input class="col-5" id="password-input" type="text" name="password"><br>
-                    <label class="col-2">Mobile:</label>
-                    <input class="col-5" id="mobile-input" type="text"  name="phone"><br>
-                    <label class="col-2" >Admin:</label>
-                    <input type="radio" id="admin-yes" value="1" name="is_admin" required> Yes
-                    <input type="radio" id="admin-no" value="0" name="is_admin" required> No<br><br>
-                    <input type="submit" class="btn btn-outline-secondary" value="Save">
-                </form>
-            </div>
-            <div id="adddiv" style="background-color: white; text-align: center; padding:1%; display:none">
-                <form method="post" action="">
-                    @csrf
-                    <label class="col-2">First Name:</label>
-                    <input class="col-5" type="text" name="fname" required><br>
-                    <label class="col-2">Last Name:</label>
-                    <input class="col-5" type="text" name="lname" required><br>
-                    <label class="col-2">BirthDate:</label>
-                    <input class="col-5" type="date" name="bdate" required><br>
-                    <label class="col-2">Gender:</label>
-                    <select class="col-5" name="gender">
-                        <option name="gender" value="male">Male</option>
-                        <option name="gender" value="female">FeMale</option>
-                    </select><br>
-                    <label class="col-2">Email:</label>
-                    <input class="col-5" type="text" name="email" required><br>
-                    <label class="col-2">Mobile:</label>
-                    <input class="col-5" type="text" name="phone" required><br>
-                    <label class="col-2">Password:</label>
-                    <input class="col-5" type="text" name="password" required><br>
-                    <label class="col-2">Admin:</label>
-                    <input type="radio" value="1" name="is_admin" required> Yes
-                    <input type="radio" value="0" name="is_admin" required> No<br><br>
-                    <input type="submit" class="btn btn-outline-secondary" value="Add">
-                </form>
-            </div>
-        </div>
-        <hr>
+        
+   
         <div class="col-lg-12">
             <!-- USER DATA-->
             <div class="user-data m-b-30" style="background-color: white;padding:2%">
-                <div class="row justify-content-between mb-3">
-                    <div class="col-lg-8">
-                        <h3 class="title-3">
-                            <i class="zmdi zmdi-account-calendar"></i> Users
-                        </h3>
+                <div class="col-xl-8 mb-4 col-lg-7 col-12">
+                    <div class="card h-100">
+                      <div class="card-header">
+                        <div class="d-flex justify-content-between mb-3">
+                          <h5 class="card-title mb-0">Statistics</h5>
+                          <small class="text-muted">Updated 1 month ago</small>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="row gy-3">
+                          <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                              <div class="badge rounded-pill bg-label-primary me-3 p-2">
+                                <i class="ti ti-chart-pie-2 ti-sm"></i>
+                              </div>
+                              <div class="card-info">
+                                <h5 class="mb-0">3</h5>
+                                <small>Services</small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                              <div class="badge rounded-pill bg-label-info me-3 p-2">
+                                <i class="ti ti-users ti-sm"></i>
+                              </div>
+                              <div class="card-info">
+                                <h5 class="mb-0">5</h5>
+                                <small>Users</small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                              <div class="badge rounded-pill bg-label-danger me-3 p-2">
+                                <i class="ti ti-shopping-cart ti-sm"></i>
+                              </div>
+                              <div class="card-info">
+                                <h5 class="mb-0">2</h5>
+                                <small>Users Subscriptions</small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 col-6">
+                            <div class="d-flex align-items-center">
+                              <div class="badge rounded-pill bg-label-success me-3 p-2">
+                                <i class="ti ti-currency-dollar ti-sm"></i>
+                              </div>
+                              <div class="card-info">
+                                <h5 class="mb-0">$9745</h5>
+                                <small>Revenue</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col mb-2" >
-
-                        <form method="post">
-                            <p style="text-align: left; color: #888">Total number of users:  &nbsp;
-                            <input type="button" id="addUser-btn" class="btn btn-outline-secondary" value="Add New User" name="adding">
-                        </form>
-                    </div>
-
-                    <div class="table-responsive table-data">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>First Name</td>
-                                    <td>Last Name</td>
-                                    <td>BDate</td>
-                                    <td>Gender</td>
-                                    <td>Email</td>
-                                    <td>Mobile</td>
-                                    <td>Is Admin</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                             
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
+                  </div>
                 <!-- END USER DATA-->
             </div>
         </div>

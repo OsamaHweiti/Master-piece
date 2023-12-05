@@ -60,36 +60,22 @@
                                 <thead>
                                     <tr>
                                         <td>ID</td>
-                                        <td>username</td>
+                                        <td>Username</td>
                                         <td>Email</td>
-                                        <td>Mobile</td>
-                                        <td>Is Admin</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+                                        <td>Plan</td>
+                                        <td>Status</td>
+                                     
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($subs as $sub)
                                         <tr>
-                                            <td>{{ $user->id }}</td>
-                                            <td>{{ $user->username }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->phone }}</td>
-                                            <td>{{ $user->is_admin }}</td>
-                                            <td>
-                                                <a href="{{ route('usersedit', $user->id) }}">
-                                                    <button class="btn btn-outline-success" value="Edit"
-                                                        name="editpro"> Edit
-                                                    </button></a>
-                                            </td>
-                                            <td>
-                                                {{-- NOT WOKRING  YA 3rsat  --}}
-                                                <form method="post"action="{{ route('usersdelete', $user->id) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
-                                                </form>
-                                            </td>
+                                            <td>{{ $sub->id }}</td>
+                                            <td>{{ $sub->user->username }}</td>
+                                            <td>{{ $sub->user->email }}</td>
+                                            <td>{{ $sub->price->name }}</td>
+                                            <td>{{ $sub->status }}</td>
+                                          
                                         </tr>
                                     @endforeach
                                 </tbody>

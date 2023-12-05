@@ -214,6 +214,28 @@
     </div>
     <div class="container ">
       <div class="row">
+        @foreach ($services as $service)
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="{{asset('uploads/' . $service->photo)}}" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+               {{$service->name}}
+              </h4>
+              <p>
+               {{$service->description}}
+              </p>
+              <a href="/pricing">
+                Read More
+                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+
+              </a>
+            </div>
+          </div>
+        </div>
+        @endforeach
         <div class="col-md-6 col-lg-4">
           <div class="box ">
             <div class="img-box">

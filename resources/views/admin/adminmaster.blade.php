@@ -8,6 +8,6 @@
         <div class="container-fluid py-4">
             @yield('main')
         </div>
-    </main>
-    @include('admin/include.js')
+        </main>
+     @include('admin/include.js')
 </div>
